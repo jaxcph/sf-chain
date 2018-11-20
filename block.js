@@ -17,7 +17,7 @@ class Block  {
     }
 
     static genesis() {
-        return new this( new Date().toISOString(),'0x','GENESIS',[]);
+        return new this(0,'0x','GENESIS',[]);
     }
 
     static mineBlock(lastBlock, data) {
