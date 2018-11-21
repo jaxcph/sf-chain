@@ -30,17 +30,17 @@ class BlockChain {
     }
 
     replaceChain(newChain) {
+
         if (newChain.length <= this.chain.length ){
-            console.log('Received chain is not longer than the current chain');
+            console.info('Received chain is not longer than the current chain');
             return;
         } else if (!this.isValidChain(newChain)) { 
-            console.log('The received chain is not valid');
+            console.warn('The received chain is not valid');
             return;
         }
 
-        console.log('Replacing chain with newchain')
+        console.info('Replacing chain with newchain')
         this.chain = newChain;
-
     }
 
 
