@@ -2,10 +2,11 @@ const BlockChain = require('./blockchain');
 const Block = require('./block');
 
 describe('BlockChain',() => {
-    let bc;
+    let bc, bc2;
 
     beforeEach( ()=> {
         bc = new BlockChain();
+        bc2 = new BlockChain();
     });
 
     it('starts with the genesis block', () => { 
@@ -18,4 +19,25 @@ describe('BlockChain',() => {
         expect(bc.chain[bc.chain.length-1].data).toEqual(data);
     });
 
+
+    it('validates a valid chain',() => {
+        bc2.addBlock('foo');
+        expect(bc.isValidChain(bc2.chain)).toBe(true);
+    });
+
+    it('replaces the chain with a valid chain', () => {
+        bc2.addBlock('goo');
+        bc.replaceChain(bc2.chain);
+
+        expect(bc.chain).toEqual(bc2.chain);
+    }) ;
+
+    it('does not replace the chain with one of less then or equal to lenght', () => {
+        bc.addBlock('foo');
+        
+        bc.replaceChain(bc2.chain);
+
+        expect(bc.isValidChain).not.toEqual(bc2.chain);
+
+    });
 });
