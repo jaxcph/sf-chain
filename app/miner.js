@@ -1,5 +1,6 @@
 const BlockChain = require('../blockchain');
 const Wallet = require('../wallet');
+const Transaction = require('../wallet/transaction');
 const TransactionPool = require('../wallet/transaction-pool');
 const P2pServer = require('./p2p-server');
 
@@ -18,7 +19,6 @@ class Miner {
         validTransactions.push(
             Transaction.rewardTransaction(this.wallet, Wallet.blockchainWallet()));
         
-
         // create block consisting of the valid transactations
         const block = this.blockchain.addBlock(validTransactions);
 
